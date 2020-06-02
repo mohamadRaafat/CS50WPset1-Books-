@@ -16,12 +16,12 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 
 
 # getting the databse url from the env variable
-if not os.getenv("DATABASE_URL"):
-    raise RuntimeError("DATABASE_URL is not set")
+# if not os.getenv("DATABASE_URL"):
+#     raise RuntimeError("DATABASE_URL is not set")
 
 # getting the secret key from the env variable
-if not os.getenv("SECRET_KEY"):
-    raise RuntimeError("SECRET_KEY is not set")
+# if not os.getenv("SECRET_KEY"):
+#     raise RuntimeError("SECRET_KEY is not set")
 
 app = Flask(__name__)
 
@@ -29,11 +29,14 @@ app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
-app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+# app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+app.config["SECRET_KEY"] = "--Secret Key--"
 Session(app)
 
 # Set up database
-engine = create_engine(os.getenv("DATABASE_URL"))
+# engine = create_engine(os.getenv("DATABASE_URL"))
+DATABASE_URL = 'postgres://mctetqdcbjpsrn:c65623a388590f91398fcd3e1feb33ca46ab613b7d78cafe30318ebe86dacdee@ec2-3-91-139-25.compute-1.amazonaws.com:5432/dfr2i74libjb89'
+engine = create_engine(DATABASE_URL)
 db = scoped_session(sessionmaker(bind=engine))
 
 loggedIn = False
