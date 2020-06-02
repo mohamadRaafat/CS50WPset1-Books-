@@ -6,6 +6,7 @@
     <h3 class="text-primary">Search for a book</h3>
     <form action="/search" method="GET" class="mt-5">
         <input type="text" list="search" name="search" id="search-input" placeholder="Enter ISBN, Title or author">
+        <button class="btn btn-sm btn-outline-primary btn-block mt-2">Search</button>
         {% if books_titles %}
                 <datalist id="search">
                     {% for title in books_titles %}
