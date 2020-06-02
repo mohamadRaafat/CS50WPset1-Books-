@@ -1,4 +1,6 @@
 Flask
 Flask-Session
+flask_wtf
 psycopg2-binary
 SQLAlchemy
+

@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&display=swap');
+
+html, body {
+      height: 100%;
+}
+body {
+      display: flex;
+      flex-flow: column;
+}
+#landing-jumbo {
+      background-image: linear-gradient(to top left, rgba(0, 0, 0, 1.0), rgba(0, 0, 0, 0.5)),
+      url("../images/landing-background.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 100vh;
+      margin-bottom: 0;
+      border-radius: 0px;
+      
+      .container {
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+      }
+
+}
+
+.login-container {
+      flex-grow : 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      #login-section {
+            width: 100%;
+            position: relative;
+            top: -50px;
+      }
+      
+}
+
+@media (min-width: 992px) {
+      #login-section, .alert-login-register-page {
+            max-width: 60%;
+      }
+      .alert-login-register-page {
+            margin: 0 auto;
+            margin-bottom: 50px;
+      }
+}
+
+#search-input {
+      width: 100%;
+      border-radius: 10px;
+      border: solid grey 1px;
+      padding: 10px;
+      color: steelblue;
+      // &:focus {
+      //       outline: none;
+      // }
+}
+
+//==================== SEARCH PAGE ====================//
+.card {
+      max-height: 360px;
+      .card-img {
+            max-height: 360px;
+      }
+      .card-body {
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-around;
+      }
+}
+
+.book-title, .book-details-heading, .write-a-review {
+      font-family: 'Goudy Bookletter 1911',
+      serif;
+}
+
+.book-details-heading, .write-a-review {
+      font-size: 1.9em;
+}
+
+%full-width {
+      width: 100vw;
+      position: relative;
+      left: calc(-50vw + 50%);
+      background-color: #F5F7FA;
+}
+.book-details {
+      @extend %full-width;
+      padding: 50px;
+}
+
+.rating {
+      unicode-bidi: bidi-override;
+      direction: rtl;
+}
+
+.rating>span {
+      display: inline-block;
+      position: relative;
+      width: 1.1em;
+}
+
+// ========================= STARS ====================
+/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
+   follow these rules. Every browser that supports :checked also supports :not(), so
+   it doesn’t make the test unnecessarily selective */
+.rating:not(:checked)>input {
+      position: absolute;
+      /* top: -9999px; */
+      clip: rect(0, 0, 0, 0);
+      height: 0;
+      width: 0;
+      overflow: hidden;
+      opacity: 0;
+}
+
+.rating:not(:checked)>label {
+      width: 1em;
+      padding: 0 .1em;
+      overflow: hidden;
+      white-space: nowrap;
+      cursor: pointer;
+      font-size: 200%;
+      line-height: 1.2;
+      color: #ddd;
+}
+
+.rating:not(:checked)>label:before {
+      content: '★ ';
+}
+
+.rating>input:checked~label {
+      color: #f70;
+}
+
+.rating:not(:checked)>label:hover,
+.rating:not(:checked)>label:hover~label {
+      color: gold;
+}
+
+.rating>input:checked+label:hover,
+.rating>input:checked+label:hover~label,
+.rating>input:checked~label:hover,
+.rating>input:checked~label:hover~label,
+.rating>label:hover~input:checked~label {
+      color: #ea0;
+}
+
+.rating>label:active {
+      position: relative;
+      top: 2px;
+      left: 2px;
+}
+
+.rating-star, .rating {
+      font-size: 1.7em;
+}
+
+
+//=======REVIEWS===============
+.all-reviews {
+      @extend %full-width;
+      padding: 30px
+}
+
+.checked {
+      color: orange
+}
+
+
+//============PROFILE==========
+.about-me {
+      content: "";
+      clear: both;
+      display: table;
+      .fa-user {
+            float: left;
+            font-size: 8.0em;
+      }
+      .user-details {
+            float: left;
+            }
+      }
+
+.title-profile {
+      border-bottom: 1px solid #d8d8d8;
+      font-weight: 700;
+}
+      
+.profile-container {
+      display: flex;
+      justify-content: center;
+}
+
+.error-page-alert-container {
+      display: flex;
+      height: 80%;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+}

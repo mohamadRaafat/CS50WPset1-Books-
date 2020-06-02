@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+<div class="container">
+    <h3 class="text-primary">Search for a book</h3>
+    <form action="/search" method="GET" class="mt-5">
+        <input type="text" list="search" name="search" id="search-input" placeholder="Enter ISBN, Title or author">
+        {% if books_titles %}
+                <datalist id="search">
+                    {% for title in books_titles %}
+                            <option value="{{title}}">{{title}}</option>
+                    {% endfor %}
+                    {% for author in books_authors %}
+                        <option value="{{author}}">{{author}}</option>
+                    {% endfor %}
+                </datalist>
+        {% endif %}
+        
+        
+    </form>
+</div>
+
+{% if books %}
+    <div class="container my-5">
+        {% for book in books %}
+                <div class="card my-4">
+                    <div class="row no-gutters">
+                        <div class="col-5 col-md-4 col-lg-3">
+                            <img src="{{book[4]}}" alt="book cover image"
+                                 class="card-img">
+                        </div>
+                        <div class="col-7 col-md-8 col-lg-9">
+                            <div class="card-body d-flex">
+                                <div class="card-title h2"><a href="/search/{{book[0]}}">{{book[1]}}</a></div>
+                                    <div class="card-text-custom">
+                                        <p class="card-text text-muted h6">Author: {{book[2]}}</p>
+                                        <p class="card-text text-muted h6">Book ISBN: {{book[0]}}</p>
+                                        <p><a href="/search?search={{book[2]}}">More books by this author</a></p>
+                                        <a href="/search/{{book[0]}}" class="btn btn-outline-primary">More Details</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+
+
+{% endblock body %}

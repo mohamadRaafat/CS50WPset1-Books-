@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+
+{% block body %}
+    <div class="container">
+        <h1 class="display-4 text-center mb-5 book-title">{{book[1]}}</h1>
+        <img src="{{book[4]}}" class="mx-auto book-page-cover-image rounded d-block" alt="Book cover image">
+
+        <div class="book-details text-center my-5">
+            <h5 class="mb-4 book-details-heading"><u>Book Details</u></h5>
+            <p class="lead">Title: {{book[1]}}</p>
+            <p class="lead">Author: {{book[2]}}</p>
+            <p class="lead">Publication Year: {{book[3]}}</p>
+            <p class="lead">Book ISBN: {{book[0]}}</p>
+            {% if data %}
+                    <p class="lead">Number of Ratings: {{data["work_ratings_count"]}}</p>
+                    <p class="lead">Average Rating: {{data["average_rating"]}}</p>
+            {% else %}
+                    <p class="lead">Number of Ratings: - </p>
+                    <p class="lead">Average Rating: - </p>
+            {% endif %}
+            
+            
+            <p><a href="/search?search={{book[2]}}">More books by this author</a></p>
+        </div>
+
+        {% if no_previous_reviews %}
+            <div class="reviews">
+                <h5 class="write-a-review">Write a review</h5>
+                <form method="POST">
+                <div class="d-block text-center">
+                    <fieldset class="rating">
+                        <input type="radio" id="star5" name="rating" value="5" /><label class="rating-star" for="star5" ">5
+                            stars</label>
+                        <input type="radio" id="star4" name="rating" value="4" /><label class="rating-star" for="star4">4
+                            stars</label>
+                        <input type="radio" id="star3" name="rating" value="3" /><label class="rating-star" for="star3">3
+                            stars</label>
+                        <input type="radio" id="star2" name="rating" value="2" /><label class="rating-star" for="star2">2
+                            stars</label>
+                        <input type="radio" id="star1" name="rating" value="1" /><label class="rating-star" for="star1">1
+                            star</label>
+                    </fieldset>
+                </div>
+                    <textarea name="review" id="review-text" cols="30" rows="10" class="form-control" required></textarea>
+                    <button class="my-4 btn btn-outline-dark btn-block">Submit</button>
+                </form>
+            </div>
+        {% endif %}
+
+        {% if all_reviews %}
+            {% if no_previous_reviews == False %}
+                    <div class="all-reviews mt-5" style="background-color: white;">
+            {% else %}
+                    <div class="all-reviews mt-5">
+            {% endif %}
+            <h5 class="write-a-review mb-5">Reviews</h5>
+                    {% for review in all_reviews %}
+                    {% if review[2] == 0 %}
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                    {% elif review[2] == 1 %}
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                    {% elif review[2] == 2 %}
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    {% elif review[2] == 3 %}
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    {% elif review[2] == 4 %}
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                    {% elif review[2] == 5 %}
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    {% endif %}
+                    
+                            <p class="text-muted">by {{review[0]}} &nbsp {{review[3]}}</p>
+                            <p class="lead">{{review[1]}}</p>
+                            <hr>
+                    {% endfor %}
+                </div>
+        {% endif %}
+        
+        
+
+    </div>
+{% endblock %}

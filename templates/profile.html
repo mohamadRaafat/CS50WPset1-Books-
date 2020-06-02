@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+
+
+<div class="container profile-container">
+    <div class="about-me my-5">
+        <i class="far fa-user mr-3"></i>
+        <div class="user-details ml-5">
+            <p class="title-profile lead">User Info</p>
+            <p class="lead user-name">Username: {{session["user"]}}</p>
+            <p class="reviews lead">Reviews: {{ number_of_reviews }}</p>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+

@@ -1,22 +1,31 @@
 {% extends "layout.html" %}
 
-{% block title %}
-Register
+{% block alertclass %}
+alert-login-register-page
+{% endblock %}
+{% block alertclass2 %}
+alert-login-register-page
 {% endblock %}
 
 {% block body %}
-<div class="container my-5">
-    <form action="/login" , method="POST">
-        {{form.hidden_tag()}}
-        <div class="form-group">
-            {{form.username(class="form-control", placeholder="Please enter your name")}}
-        </div>
-        <div class="form-group">
-            {{form.password(class="form-control", placeholder="Please enter your password")}}
-        </div>
-        <div class="form-group">
-            {{form.login(class="form-control btn btn-primary")}}
-        </div>
-    </form>
+
+
+<div class="container my-3 login-container">
+    <div id="login-section">
+        <p class="h2 text-center text-dark mb-4">Login Form</p>
+        <form action="/login" , method="POST">
+            {{form.hidden_tag()}}
+            <div class="form-group">
+                {{form.username(class="form-control", placeholder="Please enter your name")}}
+            </div>
+            <div class="form-group">
+                {{form.password(class="form-control", placeholder="Please enter your password")}}
+            </div>
+            <div class="form-group">
+                {{form.login(class="form-control btn btn-primary")}}
+            </div>
+        </form>
+        <a href="{{url_for('register')}}">Don't have an account? Sign Up</a>
+    </div>
 </div>
-{% endblock %}
+    {% endblock %}
