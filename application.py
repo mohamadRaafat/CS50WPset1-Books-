@@ -153,12 +153,6 @@ def login():
 
 @app.route("/logout")
 def logout():
-    # make sure the user is logged in
-    if loggedIn == False or session["user"] == None:
-        session["bad_alert"] = True
-        flash("You must login to proceed")
-        return redirect(url_for("login"))
-
     loggedIn = False
     session["user"] = None
     session["bad_alert"] = False
@@ -324,6 +318,10 @@ def api(isbn):
 
 
 @app.errorhandler(404)
+def error(err):
+    return render_template("errors.html", err=err)
+
+@app.errorhandler(503)
 def error(err):
     return render_template("errors.html", err=err)
 
