@@ -27,27 +27,6 @@
                     <a href="{{url_for('search')}}" class="nav-link">Search</a>
                 </li>
             </ul>
-            <ul class="navbar-nav ml-auto">
-                {% if session["user"] != None %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="far fa-user mr-3"></i>{{session["user"]}}
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a href="{{url_for('profile')}}" class="dropdown-item">Profile</a>
-                        <a href="{{url_for('logout')}}" class="dropdown-item">Logout</a>
-                    </div>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a href="{{url_for('login')}}" class="nav-link">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{url_for('register')}}" class="nav-link">Register</a>
-                </li>
-                {% endif %}
-            </ul>
         </div>
     </nav>  
 
